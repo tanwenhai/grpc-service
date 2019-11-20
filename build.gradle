@@ -9,6 +9,7 @@ buildscript {
 		classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
 		classpath "io.freefair.gradle:lombok-plugin:4.0.2"
 		classpath "gradle.plugin.com.google.protobuf:protobuf-gradle-plugin:0.8.10"
+		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
 	}
 }
 
