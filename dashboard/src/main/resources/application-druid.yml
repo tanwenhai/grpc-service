@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    druid:
+      url: "jdbc:mysql://localhost:3306/sing-sys?characterEncoding=utf8&serverTimezone=Asia/Shanghai"
+      username: root
+      password: Sing123@db.com
+      driver-class-name: com.mysql.cj.jdbc.Driver

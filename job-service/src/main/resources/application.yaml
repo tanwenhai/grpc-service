@@ -1,0 +1,44 @@
+server:
+  port: 8082
+#eureka:
+#  instance:
+#    hostname: localhost
+#    appname: JOB-SERVICE
+#  client:
+##    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+spring:
+  profiles:
+    active: druid
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          waitForJobsToCompleteOnShutdown: true
+          overwriteExistingJobs: true
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            # 集群
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+      #初始化表结构
+#      jdbc:
+#        initialize-schema: never

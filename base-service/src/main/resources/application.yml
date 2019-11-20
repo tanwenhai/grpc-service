@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.jdbc.time_zone: Asia/Shanghai
+grpc:
+  port: 9999
+#  profiles:
+#    active: druid
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#    appname: USER-SERVICE
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    com.twh.common.entity.CustomEnumType: TRACE
