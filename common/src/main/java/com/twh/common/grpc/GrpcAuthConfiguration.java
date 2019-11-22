@@ -1,12 +1,16 @@
-package com.twh.common.grpc.bootstrap;
+package com.twh.common.grpc;
 
-import io.grpc.*;
+import io.grpc.BindableService;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+import io.grpc.ServerServiceDefinition;
 import io.grpc.protobuf.services.ProtoReflectionService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -14,11 +18,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * gPRC server 引导类
- */
-public abstract class AbstractServerInitialization implements ApplicationContextAware {
-    private Logger log = LoggerFactory.getLogger(AbstractServerInitialization.class);
+@Slf4j
+public class GrpcAuthConfiguration implements ApplicationContextAware {
 
     private Server server = null;
 
@@ -27,6 +28,12 @@ public abstract class AbstractServerInitialization implements ApplicationContext
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "grpc")
+    ServerProperty serverProperty() {
+        return new ServerProperty();
     }
 
     /**
@@ -101,4 +108,5 @@ public abstract class AbstractServerInitialization implements ApplicationContext
             server.shutdown();
         }
     }
+
 }

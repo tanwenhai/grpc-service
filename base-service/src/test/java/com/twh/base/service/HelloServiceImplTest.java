@@ -22,7 +22,6 @@ public class HelloServiceImplTest {
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("127.0.0.1", 9999).usePlaintext().build();
-
         HelloRequest.Builder builder = HelloRequest.newBuilder();
         builder.setName("twh");
         GreeterGrpc.GreeterBlockingStub stub = GreeterGrpc.newBlockingStub(channel);

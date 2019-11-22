@@ -1,4 +1,4 @@
-package com.twh.common.grpc.bootstrap;
+package com.twh.common.grpc;
 
 import org.springframework.stereotype.Component;
 
